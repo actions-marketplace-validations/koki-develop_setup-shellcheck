@@ -23,4 +23,5 @@ runs:
       env:
         INPUT_VERSION: ${{ inputs.version }}
         GITHUB_TOKEN: ${{ inputs.token }}
-      run: "${GITHUB_ACTION_PATH}/install.sh"
+      run: |-
+        "${GITHUB_ACTION_PATH}/install.sh"
