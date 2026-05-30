@@ -1,4 +1,4 @@
-name: Setup ShellCheck
+name: Setup ShellCheck Action
 description: Set up ShellCheck, a static analysis tool for shell scripts
 
 branding:
