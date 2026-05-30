@@ -6,7 +6,7 @@ A GitHub Action to install [ShellCheck](https://github.com/koalaman/shellcheck),
 
 <!-- x-release-please-start-version -->
 ```yaml
-- uses: koki-develop/setup-shellcheck@v1.0.0
+- uses: koki-develop/setup-shellcheck@v1.0.1
 ```
 <!-- x-release-please-end -->
 
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: koki-develop/setup-shellcheck@v1.0.0
+      - uses: koki-develop/setup-shellcheck@v1.0.1
       - run: shellcheck script.sh
 ```
 <!-- x-release-please-end -->
