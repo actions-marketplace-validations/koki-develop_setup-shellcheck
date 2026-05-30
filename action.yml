@@ -1,0 +1,26 @@
+name: Setup ShellCheck
+description: Set up ShellCheck, a static analysis tool for shell scripts
+
+branding:
+  icon: terminal
+  color: green
+
+inputs:
+  version:
+    description: "Version to install (e.g., X.Y.Z, vX.Y.Z, or latest)"
+    required: false
+    default: "latest"
+  token:
+    description: "GitHub token for API requests (to avoid rate limiting)"
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install ShellCheck
+      shell: bash
+      env:
+        INPUT_VERSION: ${{ inputs.version }}
+        GITHUB_TOKEN: ${{ inputs.token }}
+      run: "${GITHUB_ACTION_PATH}/install.sh"
