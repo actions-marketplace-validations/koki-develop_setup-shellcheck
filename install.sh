@@ -89,10 +89,12 @@ expected_hash=$(echo "${release_json}" | jq -r --arg name "${archive_name}" '.as
 expected_hash="${expected_hash#sha256:}"
 
 if [ -n "${expected_hash}" ]; then
+  # On Windows, sha256sum prefixes the line with a backslash when the path
+  # contains backslashes; strip it before comparing.
   if command -v sha256sum &> /dev/null; then
-    actual_hash=$(sha256sum "${install_dir}/${archive_name}" | awk '{print $1}')
+    actual_hash=$(sha256sum "${install_dir}/${archive_name}" | awk '{gsub(/^\\/, "", $1); print $1}')
   elif command -v shasum &> /dev/null; then
-    actual_hash=$(shasum -a 256 "${install_dir}/${archive_name}" | awk '{print $1}')
+    actual_hash=$(shasum -a 256 "${install_dir}/${archive_name}" | awk '{gsub(/^\\/, "", $1); print $1}')
   else
     echo "::error::Neither sha256sum nor shasum is available"
     exit 1
